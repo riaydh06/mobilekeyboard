@@ -7,15 +7,16 @@
     </p>
     <h1 class="text-center">Demo of vue-touch-keyboard</h1>
     <div class="container" id="app">
+      {{text1}} &nbsp;&nbsp;{{text2}}
 
       <fieldset>
         <legend>Normal layout</legend>
-        <input type="text" placeholder="Text input" @focus="show" data-layout="normal" />
+        <input type="text" placeholder="Text input" @focus="show" v-model="text1"   data-layout="normal" />
       </fieldset>
 
       <fieldset>
         <legend>Compact layout</legend>
-        <input type="text" placeholder="Text input" @focus="show" data-layout="compact" />
+        <input type="text" placeholder="Text input" @focus="show" v-model="text2" data-layout="compact" />
       </fieldset>
 
       <fieldset>
@@ -32,7 +33,7 @@
 <script>
   import Vue from 'vue';
   import customToolbar from './CustomToolbar';
-  import page1 from './Page1';
+  import page1 from './Page3';
   import VueTouchKeyboard from "vue-touch-keyboard";
   import style from "vue-touch-keyboard/dist/vue-touch-keyboard.css"; // load default style
 
@@ -41,6 +42,8 @@
   export default {
     data(){
       return {
+        text1:'',
+        text2:'',
         visible: false,
         layout: "normal",
         input: null,
@@ -63,6 +66,14 @@
       },
 
       show(e) {
+        document.addEventListener('deviceready', function() {
+          Keyboard.hide();
+          Keyboard.shrinkView(true)
+          Keyboard.hideFormAccessoryBar(value, successCallback);
+          window.addEventListener('keyboardDidShow', function () {
+            document.activeElement.scrollIntoView()
+          })
+        })
         this.input = e.target;
         this.layout = e.target.dataset.layout;
 

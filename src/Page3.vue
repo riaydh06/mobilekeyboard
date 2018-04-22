@@ -1,73 +1,59 @@
 <template>
-  <v-ons-page>
-    <custom-toolbar :back-label="'Page 2'">Page 2</custom-toolbar>
-    <!--<keyboard-->
-            <!--v-model="input"-->
-            <!--@custom="custom"-->
-            <!--@input="changed"-->
-            <!--:layouts="[-->
-		<!--'1234567890{delete:backspace}|qwertyuiop|asdfghjkl|{shift:goto:1}zxcvbnm|{space:space}{custom:custom}',-->
-		<!--'!@#$%^&*(){delete:backspace}|QWERTYUIOP|ASDFGHJKL|{shift:goto:0}ZXCVBNM|{space:space}{custom:custom}'-->
-	<!--]"-->
-            <!--:maxlength="16"-->
-    <!--&gt;</keyboard>-->
-    <div id="header">
-      <div id="title">Chatting with John</div>
-      <div id="toggleChat" @click="toggleChat()">Toggle</div>
-      <div id="focusMessenger" @click="showMessengerKeyboard()">Focus</div>
-      <div id="updateMessenger" @click="updateMessenger()">Update</div>
-    </div>
+    <v-ons-page>
+        <custom-toolbar :back-label="'Page 2'">Page 2</custom-toolbar>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
 
-    <div id="messages">
-      <div class="message left"><span>Long time no chat!</span>
-        <div>10/19/16, 2:18 AM</div>
-      </div>
-      <div class="message right"><span>Yeah likewise ;)</span>
-        <div>10/20/16, 4:15 PM</div>
-      </div>
-      <div class="message left"><span>Hey man, how are you?</span>
-        <div>10/20/16, 4:18 PM</div>
-      </div>
-      <div class="message right"><span>Good, thanks, how are you?</span>
-        <div>10/20/16, 4:20 PM</div>
-      </div>
-      <div class="message left"><span>Meh.. could be better. I'm out of beer 🍺. Do you have any left?</span></div>
-      <div class="message left"><span>.. please!</span>
-        <div>10/20/16, 4:21 PM</div>
-      </div>
-      <div class="message right"><span>Lemme check..</span></div>
-      <div class="message right"><span>Dude! I have 2 sixpacks stacked in the fridge - come over! 🍻</span>
-        <div>10/20/16, 4:23 PM</div>
-      </div>
-      <div class="message left"><span>Right on! Let's party 🎉 🎉</span>
-        <div>10/20/16, 4:23 PM</div>
-      </div>
-    </div>
-  </v-ons-page>
+            <br/><input type="text" value="regular input" maxlength="15" style="font-size:13px; font-family:Helvetica; font-style:italic" /><br/><br/>
+
+            <br/><input data-nativekeyboard="true" type="text" value="max 15 chars" maxlength="15" style="font-size:13px; font-family:Helvetica; font-style:italic" /><br/><br/>
+
+            <br/><input data-nativekeyboard='{"type":"decimal", "maxlength":4}' type="text" value="100" style="font-family: Verdana; font-size:15px; font-weight: bold" /><br/><br/>
+
+            <br/><input data-nativekeyboard='{"type":"numbersandpunctuation", "accessorybar":{}}' type="number" value="200" style="font-family: Verdana; font-size:15px; font-weight: bold" /><br/><br/>
+
+            <br/><input data-nativekeyboard='{"type":"decimal"}' type="text" value="19.95" style="font-family: Arial; font-size:15px; font-weight: bold" /><br/><br/>
+
+            <br/><input data-nativekeyboard='configureNativeKeyboard("#FF0000")' type="tel" value="+31650123456" style="font-family: Arial; font-size:15px; font-weight: bold" /><br/><br/>
+
+            <br/><input data-nativekeyboard='configureNativeKeyboard' type="email" value="sergey@google.com" style="font-family: Arial; font-size:12px; font-weight: normal" /><br/><br/>
+
+            <br/><input data-nativekeyboard='{"type":"twitter"}' type="text" value="@eddyverbruggen" style="font-family: Arial; font-size:12px; font-weight: normal; color: #FF0000" /><br/><br/>
+
+            <br/><textarea data-nativekeyboard='{}' style="font-size:15px; font-family:Helvetica; font-weight: bold; border-radius:0">Helvetica</textarea><br/><br/>
+
+            <br/><textarea data-nativekeyboard='{}' style="font-size:15px; font-family:Arial; border-radius:5px">Arial, with border radius</textarea><br/><br/>
+
+            <!--br/><div data-nativekeyboard='{"type":"default"}' id="content" onclick="window.plugins.toast.editText(this)" style="width:200px;height:50px;background-color:#ddd;text-transform:none">12345</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"decimal"}' id="content2" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; border:4px solid red; font-family: Arial; width:160px; height:50px; color:#fff; background-color:#000; text-transform:none">9,95</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"phone"}' id="content3" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; padding:4px; font-family: Arial; width:160px; height:50px; color:#fff; background-color:#000; text-transform:none">0650298958</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"number"}' id="content4" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; margin: 4px; font-family: Arial; width:160px; height:50px; color:#fff; background-color:#000; text-transform:none">112233</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"namephone"}' id="content5" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; font-family: Arial; width:160px; height:50px; color:#222; background-color:#fff; text-transform:none">namephone</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"numberspunc"}' id="content6" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; font-family: Helvetica; width:160px; height:50px; color:#ddd; background-color:#555; text-transform:none">numberspunc</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"twitter"}' id="content6" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; font-family: Helvetica; width:160px; height:50px; color:#ddd; background-color:#555; text-transform:none">twitter</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"email"}' id="content6" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; font-family: Helvetica; width:160px; height:50px; color:#ddd; background-color:#555; text-transform:none">email</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"url"}' id="content6" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; font-family: Helvetica; width:160px; height:50px; color:#ddd; background-color:#555; text-transform:none">url</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"alphabet"}' id="content6" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; font-family: Helvetica; width:160px; height:50px; color:#ddd; background-color:#555; text-transform:none">alphabet</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"search"}' id="content6" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; font-family: Helvetica; width:160px; height:50px; color:#ddd; background-color:#555; text-transform:none">search</div><br/><br/>
+             <br/><div data-nativekeyboard='{"type":"ascii"}' id="content6" onclick="window.plugins.toast.editText(this)" style="font-size: 16px; font-family: Helvetica; width:160px; height:50px; color:#ddd; background-color:#555; text-transform:none">ascii</div><br/><br/-->
+
+            <p class="event received">Device is Ready</p>
+            <br/>
+            <button onclick="showMessenger()">show messenger</button>&nbsp;
+            <button onclick="NativeKeyboard.hideMessenger({animated:true})">hide</button>
+            <br/>
+            <div id="messages">First<br/><br/>Second<br/><br/>Third</div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+    </v-ons-page>
 </template>
 
 <script>
 
-  function hideMessenger() {
-    NativeKeyboard.hideMessenger({
-      animated: true
-    });
-  }
-  function updateMessenger() {
-    var options = {
-      text: "This is the updated text! ",
-      showKeyboard: true,
-      caretIndex: 10 // caret is set at end of text if not specified
-    };
-    NativeKeyboard.updateMessenger(
-      options,
-      // optional success and error handlers
-      function(){},
-      function(){});
-  }
-  function showMessengerKeyboard() {
-    NativeKeyboard.showMessengerKeyboard(function(){}, function(){});
-  }
+
   function showMessenger() {
     var options = {
       onSubmit: function (text) {
@@ -152,20 +138,6 @@
     };
     NativeKeyboard.showMessenger(options, onSuccess, onError);
   }
-  function toggleChat() {
-    if (chatShowing) {
-      hideMessenger();
-    } else {
-      showMessenger();
-    }
-    chatShowing = !chatShowing;
-  }
-  var chatShowing = true;
-  if (chatShowing) {
-    document.addEventListener('deviceready', showMessenger, false);
-  }
-
-
   import customToolbar from './CustomToolbar';
   import keyboard from 'vue-keyboard';
   export default {
@@ -302,109 +274,109 @@
       //   document.addEventListener('deviceready', showMessenger, false);
       // }
 
-     },
-     props: ['pageStack'],
-     components: { customToolbar,keyboard }
+    },
+    props: ['pageStack'],
+    components: { customToolbar,keyboard }
   }
 </script>
 
 <style scoped>
-  * {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
-  }
-  body {
-    -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
-    -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
-    -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color: #E4E4E4;
-    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-  }
-  #header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #DDDDDD;
-    border-bottom: 1px solid #BBBBBB;
-    height: 60px;
-    z-index: 2;
-  }
-  #header #title {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-  }
-  #header #toggleChat {
-    position: absolute;
-    top: 26px;
-    background-color: #eee;
-    right: 0;
-    font-size: 12px;
-    text-decoration: underline;
-    padding: 2px;
-    border-radius: 2px;
-  }
-  #header #focusMessenger {
-    position: absolute;
-    top: 26px;
-    background-color: #eee;
-    right: 44px;
-    font-size: 12px;
-    text-decoration: underline;
-    padding: 2px;
-    border-radius: 2px;
-  }
-  #header #updateMessenger {
-    position: absolute;
-    top: 26px;
-    background-color: #eee;
-    right: 86px;
-    font-size: 12px;
-    text-decoration: underline;
-    padding: 2px;
-    border-radius: 2px;
-  }
-  #messages {
-    width: 96%;
-    left: 2%;
-    position: absolute;
-    top: 60px;
-    bottom: 0;
-    overflow-y: scroll;
-  }
-  .message {
-    width: 100%;
-    padding: 4px 0;
-  }
-  .right {
-    text-align: right;
-  }
-  .message span {
-    width: 65%;
-    padding: 14px 10px;
-    border-radius: 5px;
-    display: inline-block;
-    /*margin: 0 20px;*/
-    text-align: left;
-  }
-  .message div {
-    padding: 6px 10px;
-    display: inline-block;
-    margin: 0 20px 8px 20px;
-    color: #BBBBBB;
-    font-size: 12px;
-  }
-  .message.left span {
-    background-color: #CCCCCC;
-  }
-  .message.right span {
-    color: #FFFFFF;
-    background-color: #007AFF;
-  }
+    * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    }
+    body {
+        -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+        -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+        -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+        background-color: #E4E4E4;
+        font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    #header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #DDDDDD;
+        border-bottom: 1px solid #BBBBBB;
+        height: 60px;
+        z-index: 2;
+    }
+    #header #title {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+    #header #toggleChat {
+        position: absolute;
+        top: 26px;
+        background-color: #eee;
+        right: 0;
+        font-size: 12px;
+        text-decoration: underline;
+        padding: 2px;
+        border-radius: 2px;
+    }
+    #header #focusMessenger {
+        position: absolute;
+        top: 26px;
+        background-color: #eee;
+        right: 44px;
+        font-size: 12px;
+        text-decoration: underline;
+        padding: 2px;
+        border-radius: 2px;
+    }
+    #header #updateMessenger {
+        position: absolute;
+        top: 26px;
+        background-color: #eee;
+        right: 86px;
+        font-size: 12px;
+        text-decoration: underline;
+        padding: 2px;
+        border-radius: 2px;
+    }
+    #messages {
+        width: 96%;
+        left: 2%;
+        position: absolute;
+        top: 60px;
+        bottom: 0;
+        overflow-y: scroll;
+    }
+    .message {
+        width: 100%;
+        padding: 4px 0;
+    }
+    .right {
+        text-align: right;
+    }
+    .message span {
+        width: 65%;
+        padding: 14px 10px;
+        border-radius: 5px;
+        display: inline-block;
+        /*margin: 0 20px;*/
+        text-align: left;
+    }
+    .message div {
+        padding: 6px 10px;
+        display: inline-block;
+        margin: 0 20px 8px 20px;
+        color: #BBBBBB;
+        font-size: 12px;
+    }
+    .message.left span {
+        background-color: #CCCCCC;
+    }
+    .message.right span {
+        color: #FFFFFF;
+        background-color: #007AFF;
+    }
 
 </style>
